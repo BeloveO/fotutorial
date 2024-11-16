@@ -37,14 +37,11 @@ export default function ProfilePage() {
     }
     async function handleFileChange(ev) {
         const files = ev.target.files;
-        if (files?.length === 1 && files) {
+        if (files?.length > 0) {
             const data = new FormData;
-            data.set('files', files[0]);
+            data.set('file', files[0]);
             await fetch('/api/upload', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
                 body: data,
             })
         }
